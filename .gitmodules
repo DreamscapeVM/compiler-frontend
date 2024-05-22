@@ -1,0 +1,3 @@
+[submodule "lib/virtual-machine"]
+	path = lib/virtual-machine
+	url = https://github.com/virtual-machine-created-by-myself/virtual-machine
