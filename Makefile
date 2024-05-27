@@ -1,5 +1,13 @@
 .PHONY: build deploy configure
 
+build: 
+	if ! [ -d "build" ]; then \
+		mkdir build; \
+	fi
+
+	cd build && ninja -j8
+	
+
 configure:
 	if ! [ -d "build" ]; then \
 		mkdir build; \
@@ -12,6 +20,7 @@ configure:
 				-DCMAKE_CXX_COMPILER=clang++ \
 				-DCMAKE_BUILD_TYPE=Debug \
 				-GNinja .. 
+
 
 clean: 
 	rm -rf build

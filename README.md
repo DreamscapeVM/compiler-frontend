@@ -6,7 +6,7 @@ assembly like language.
 ```sh
 ; data # Comments
 let name: str = "hello world!\n"
-let value: int64 = 1000;
+let value: int64 = 1000
 
 ; function add (x: [int32]) -> int64 {
     mut r: int64 = 0
