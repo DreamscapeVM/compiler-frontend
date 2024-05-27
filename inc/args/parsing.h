@@ -13,7 +13,13 @@ namespace args {
         
         uint64_t max_register_size;
         
-        std::vector<std::string> input;
+        // convert code to opcode -> compile
+        // convert compiled list to executable program
+        std::vector<std::string> code;
+
+        std::vector<std::string> compiled_input;
+        std::vector<std::string> inlcude_directory;
+        
 
         std::string output_filename;
         std::string output_directory;

@@ -6,11 +6,15 @@ const args::arguments args::parse_argument(int argc, char** argv) {
     cxxopts::Options options("MyProgram", "One line description of MyProgram");
 
     options.add_options()
-        ("m,max_memory_size", "int", cxxopts::value<uint64_t>()->default_value(std::to_string(4 * args::MB)))
-        ("r,max_register_size", "int", cxxopts::value<uint64_t>()->default_value(std::to_string(8)))
-        ("i,insturction_per_seconds", "int", cxxopts::value<uint64_t>()->default_value(std::to_string(1 * args::KB)))
-        ("p,path_of_software", "string", cxxopts::value<std::string>())
-        ("v,verbose", "Verbose output", cxxopts::value<bool>()->default_value("false"))
+        ("v,option_verbose", "bool", cxxopts::value<uint64_t>()->default_value(std::to_string(false)))
+        ("c,option_compile", "bool", cxxopts::value<uint64_t>()->default_value(std::to_string(true)))
+        ("l,option_link", "bool", cxxopts::value<uint64_t>()->default_value(std::to_string(false)))
+        ("r,max_register_size", "int", cxxopts::value<int>()->default_value(std::to_string(8)))
+        ("i,code", "string", cxxopts::value<std::vector<std::string>>())
+        ("I,compiled_input", "string", cxxopts::value<std::vector<std::string>>())
+        ("L,inlcude_directory", "string", cxxopts::value<std::vector<std::string>>())
+        ("f,output_filename", "Verbose output", cxxopts::value<bool>()->default_value("main.o"))
+        ("f,output_director", "Verbose output", cxxopts::value<bool>()->default_value("."))
         ("h,help", "Print usage")
         ;
 
