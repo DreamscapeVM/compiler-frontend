@@ -20,7 +20,6 @@ namespace args {
         std::vector<std::string> compiled_input;
         std::vector<std::string> inlcude_directory;
         
-
         std::string output_filename;
         std::string output_directory;
     };

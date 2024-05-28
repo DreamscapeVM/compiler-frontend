@@ -1,5 +1,12 @@
 {
     "cmake.configureSettings": {
         "CMAKE_TOOLCHAIN_FILE": "${workspaceRoot}/3rdparty/vcpkg/scripts/buildsystems/vcpkg.cmake"
-    }
+    },
+    "cmake.debugConfig": {
+        "args": [
+            "-v", "true", 
+            "-c", "true",
+            "-i", "main.es",
+        ]
+     },
 }
