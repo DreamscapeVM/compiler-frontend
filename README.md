@@ -51,3 +51,14 @@ $ vm --max_memory_size 4096 \
      --insturction_per_seconds 1024 \
      --path_of_software code.vm
 ```
+
+
+# Result After Compiling Source Code
+
+### NOT! EXECUTABLE ONLY FOR LINKER
+
+![](/docs/img1.png)
+
+# Result After Linking
+
+![](https://raw.githubusercontent.com/DreamscapeVM/virtual-machine/main/docs/img2.png)

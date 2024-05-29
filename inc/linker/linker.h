@@ -1,0 +1,4 @@
+#ifndef __INCLUDE_LINKER_LINKER_H
+#define __INCLUDE_LINKER_LINKER_H
+
+#endif
