@@ -1,4 +1,6 @@
 #include <sstream>
+#include <fstream>
+
 #include <codegen/linker.h>
 #include <codegen/type/convert_varianttype_to_size.h>
 
@@ -86,6 +88,23 @@ std::vector<uint8_t> codegen::linker::create_linker_to_memory() const {
 
     return output;
 }
+
+void codegen::linker::create_linker_to_file(const std::string& filename) const {
+    auto data = create_linker_to_memory();
+    std::ofstream file(filename, std::ios::binary);
+    if (!file.is_open()) {
+        throw std::runtime_error("Failed to open file: " + filename);
+        return;
+    }
+
+    file.write(reinterpret_cast<const char*>(data.data()), data.size());
+    if (!file) {
+        throw std::runtime_error("Failed to write data to file: " + filename);
+    }
+
+    file.close();
+}
+
 
 void codegen::linker::restore_from_memory(const std::vector<uint8_t>& data) { 
     // TODO: restore from memory

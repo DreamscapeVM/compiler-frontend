@@ -1,6 +1,6 @@
 {
     "cmake.configureSettings": {
-        "CMAKE_TOOLCHAIN_FILE": "${workspaceRoot}/3rdparty/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "${workspaceRoot}/lib/vcpkg/scripts/buildsystems/vcpkg.cmake"
     },
     "cmake.debugConfig": {
         "args": [
@@ -8,5 +8,5 @@
             "-c", "true",
             "-i", "main.es",
         ]
-     },
+    },
 }

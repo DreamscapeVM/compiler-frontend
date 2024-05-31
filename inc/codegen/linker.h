@@ -29,6 +29,8 @@ public:
     std::vector<uint8_t> create_linker_to_memory() const;
     void restore_from_memory(const std::vector<uint8_t>& data);
 
+    void create_linker_to_file(const std::string& filename) const;
+
 public:
     void add_function(std::string name, 
                         variant_type ret, 
