@@ -62,6 +62,15 @@ std::vector<uint8_t> codegen::linker::convert_func_to_bin(const codegen::functio
     return output;
 }
 
+codegen::variant codegen::linker::convert_bin_to_var(const std::vector<uint8_t>& v, int& index) const { 
+    return codegen::variant {};
+}
+
+codegen::function codegen::linker::convert_bin_to_func(const std::vector<uint8_t>& v, int& index) const { 
+    return codegen::function {};
+}
+
+
 std::vector<uint8_t> codegen::linker::create_linker_to_memory() const { 
     std::vector<uint8_t> output;
     
@@ -79,7 +88,8 @@ std::vector<uint8_t> codegen::linker::create_linker_to_memory() const {
 }
 
 void codegen::linker::restore_from_memory(const std::vector<uint8_t>& data) { 
-
+    // TODO: restore from memory
+        
 }
 
 

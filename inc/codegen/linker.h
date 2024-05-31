@@ -20,6 +20,9 @@ private:
     std::vector<uint8_t> convert_var_to_bin(const variant& v) const;
     std::vector<uint8_t> convert_func_to_bin(const function& f) const;
 
+    variant convert_bin_to_var(const std::vector<uint8_t>& v, int& index) const;
+    function convert_bin_to_func(const std::vector<uint8_t>& v, int& index) const;
+
 public:
     const std::vector<variant>* const get_variant() const;
     const std::vector<function>* const get_function() const;
