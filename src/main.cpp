@@ -21,10 +21,10 @@ int main(int argc, char** argv) {
     linker.add_var("hello world4", std::string("hello"));
     linker.add_var("hello world5", std::vector<int> { 1, 2, 3, 4, 5});
     auto m = linker.create_linker_to_memory();
-    for (int i = 0; i < m.size(); i++) { 
-        printf("%d, ", m[i]);
-    }
-
-    // std::cout << "hello world!\n";
+    // for (int i = 0; i < m.size(); i++) { 
+    //     printf("%d, ", m[i]);
+    // }
+    linker.restore_from_memory(m);
+    
     return 0;
 }

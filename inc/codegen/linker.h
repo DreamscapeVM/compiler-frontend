@@ -24,6 +24,7 @@ private:
     function convert_bin_to_func(const std::vector<uint8_t>& v, int& index) const;
 
 public:
+
     const std::vector<variant>* const get_variant() const;
     const std::vector<function>* const get_function() const;
     std::vector<uint8_t> create_linker_to_memory() const;
