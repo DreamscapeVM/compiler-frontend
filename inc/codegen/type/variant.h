@@ -24,29 +24,30 @@ enum class variant_type : uint8_t {
     float32,
     float64,
     
-    array_uint8,
-    array_uint16,
-    array_uint32,
-    array_uint64,
+    array_uint8,    // w/ pointer
+    array_uint16,   // w/ pointer
+    array_uint32,   // w/ pointer
+    array_uint64,   // w/ pointer
 
-    array_int8,
-    array_int16,
-    array_int32,
-    array_int64,
+    array_int8,     // w/ pointer
+    array_int16,    // w/ pointer
+    array_int32,    // w/ pointer
+    array_int64,    // w/ pointer
 
-    array_float8,
-    array_float16,
-    array_float32,
-    array_float64,
+    array_float8,   // w/ pointer
+    array_float16,  // w/ pointer
+    array_float32,  // w/ pointer
+    array_float64,  // w/ pointer
 
-    string,
+    string,         // w/ pointer
 };
+
+
 
 struct variant { 
     variant_type type; // maybe not used.
     std::string name;  // identifier
-    int size;
-    std::vector<uint8_t> data;
+    std::vector<uint8_t> data; // with size of var
 };
 
 }
