@@ -1,5 +1,5 @@
-#ifndef __INCLUDE_CODEGEN_GEN_H
-#define __INCLUDE_CODEGEN_GEN_H
+#ifndef __INCLUDE_CODEGEN_SOFTWARE_H
+#define __INCLUDE_CODEGEN_SOFTWARE_H
 
 namespace codegen {
 
