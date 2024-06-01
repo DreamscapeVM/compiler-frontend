@@ -1,5 +1,5 @@
-#ifndef __INCLUDE_CODEGEN_TYPE_VARIANT_H
-#define __INCLUDE_CODEGEN_TYPE_VARIANT_H
+#ifndef __INCLUDE_LINKER_TYPE_VARIANT_H
+#define __INCLUDE_LINKER_TYPE_VARIANT_H
 
 #include <string>
 #include <vector>
@@ -52,4 +52,4 @@ struct variant {
 
 }
 
-#endif // __INCLUDE_CODEGEN_TYPE_VARIANT_H
+#endif // __INCLUDE_LINKER_TYPE_VARIANT_H

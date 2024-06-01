@@ -1,5 +1,5 @@
-#ifndef __INCLUDE_CODEGEN_SOFTWARE_H
-#define __INCLUDE_CODEGEN_SOFTWARE_H
+#ifndef __INCLUDE_LINKER_SOFTWARE_H
+#define __INCLUDE_LINKER_SOFTWARE_H
 
 namespace linker {
 

@@ -1,5 +1,5 @@
-#ifndef __INCLUDE_CODEGEN_TYPE_FUNCTION_H
-#define __INCLUDE_CODEGEN_TYPE_FUNCTION_H
+#ifndef __INCLUDE_LINKER_TYPE_FUNCTION_H
+#define __INCLUDE_LINKER_TYPE_FUNCTION_H
 
 #include <string>
 #include <vector>
@@ -20,4 +20,4 @@ struct function {
 
 }
 
-#endif // __INCLUDE_CODEGEN_TYPE_FUNCTION_H
+#endif // __INCLUDE_LINKER_TYPE_FUNCTION_H
