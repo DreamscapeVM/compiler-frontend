@@ -1,3 +1,4 @@
+#include <fstream>
 #include <tokenizer/tokenizer.h>
 
 std::vector<uint8_t> tokenizer::read_from_file(const std::string& filename) const {

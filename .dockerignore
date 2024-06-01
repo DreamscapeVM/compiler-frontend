@@ -1,0 +1,7 @@
+build/
+.vscode/
+vcpkg_insatlled/
+scripts/
+*.md
+LICENSE
+lib/vcpkg/

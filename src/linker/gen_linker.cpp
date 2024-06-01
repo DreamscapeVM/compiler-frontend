@@ -79,9 +79,9 @@ linker::variant linker::gen_linker::convert_bin_to_var(const std::vector<uint8_t
     index += s;
 
     return linker::variant {
-        .name = n,
         .type = static_cast<linker::variant_type>(type),
-        .data = d
+        .name = n,
+        .data = d,
     };
 }
 
@@ -178,9 +178,9 @@ void linker::gen_linker::add_var(std::string name,
     }
     
     var.push_back(linker::variant { 
-        .data = data,
-        .name = name,
         .type = type,
+        .name = name,
+        .data = data,
     });
 }
 
@@ -189,8 +189,8 @@ void linker::gen_linker::add_function(std::string name,
                         std::vector<std::tuple<std::string, linker::variant_type>> arg,
                         std::vector<uint8_t> ops) { 
     func.push_back(function { 
-        .name = name,
         .ret = ret,
+        .name = name,
         .arg = arg,
         .data = ops,
     });

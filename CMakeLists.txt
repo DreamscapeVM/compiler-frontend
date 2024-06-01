@@ -1,4 +1,4 @@
-SET(PROJ_NAME ElysiumCompiler)
+SET(PROJ_NAME DreamscapeCompiler)
 cmake_minimum_required(VERSION 3.22)
 project(${PROJ_NAME})
 

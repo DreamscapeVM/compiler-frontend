@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <tuple>
+#include <cstdint>
 
 #include <linker/type/variant.h>
 #include <linker/type/function.h>
