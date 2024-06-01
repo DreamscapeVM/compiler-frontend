@@ -22,10 +22,10 @@ include_directories(${CMAKE_SOURCE_DIR}/inc)
 include_directories(${CMAKE_SOURCE_DIR}/lib/virtual-machine/inc)
 
 SET (SRC_PARSER             src/args/parser.cpp)
-SET (SRC_CODEGEN            src/codegen/gen_linker.cpp)
+SET (SRC_LINKER            src/linker/gen_linker.cpp)
 SET (SRC_TOKENIZER          src/tokenizer/tokenizer.cpp)
 
-add_library(main  ${SRC_PARSER} ${SRC_CODEGEN} ${SRC_TOKENIZER})
+add_library(main  ${SRC_PARSER} ${SRC_LINKER} ${SRC_TOKENIZER})
 
 target_link_libraries(main PUBLIC spdlog::spdlog)
 target_link_libraries(main PUBLIC cxxopts::cxxopts)

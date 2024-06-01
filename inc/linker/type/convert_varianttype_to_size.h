@@ -2,13 +2,13 @@
 #define __INCLUDE_CODEGEN_TYPE_CONVERT_VARIANTTYPE_TO_SIZE_H
 
 
-#include <codegen/type/variant.h>
+#include <linker/type/variant.h>
 
 #define CONVERT_VARIANTTYPE_MACRO(ENUM, SIZE) \
     case ENUM:   \
         return SIZE;
 
-namespace codegen { 
+namespace linker { 
 constexpr size_t convert_varianttype(variant_type t) { 
     switch (t) {
         CONVERT_VARIANTTYPE_MACRO(variant_type::int8, 1);

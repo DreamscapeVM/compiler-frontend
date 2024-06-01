@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include <codegen/type/variant.h>
+#include <linker/type/variant.h>
 
 #define CONVERT_TYPE_MACRO(TYPE, ENUM)          \
 template<>                                      \
@@ -11,7 +11,7 @@ struct convert_type<TYPE> {                     \
     constexpr static variant_type value = ENUM; \
 };
 
-namespace codegen {
+namespace linker {
 
 template<typename T>
 struct convert_type { 

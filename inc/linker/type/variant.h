@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace codegen { 
+namespace linker { 
 
 enum class variant_type : uint8_t { 
     none,

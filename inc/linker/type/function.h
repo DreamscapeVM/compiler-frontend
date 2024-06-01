@@ -6,9 +6,9 @@
 #include <tuple>
 #include <vector>
 
-#include <codegen/type/variant.h>
+#include <linker/type/variant.h>
 
-namespace codegen { 
+namespace linker { 
 
 struct function { 
     variant_type ret; // maybe not used.

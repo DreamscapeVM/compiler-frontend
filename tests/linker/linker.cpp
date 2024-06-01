@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
-#include <codegen/codegen.h>
+#include <linker/linker.h>
 
 #define ADD_TEST_CONVERT_TYPE(ENUM, TYPE) \
 TEST(Linker, convert_type_##ENUM) { \
-    EXPECT_EQ(codegen::convert_type<TYPE>::value, codegen::variant_type::ENUM); \
+    EXPECT_EQ(linker::convert_type<TYPE>::value, linker::variant_type::ENUM); \
 } 
 
 ADD_TEST_CONVERT_TYPE(int8,  int8_t)

@@ -1,7 +1,7 @@
 #ifndef __INCLUDE_CODEGEN_SOFTWARE_H
 #define __INCLUDE_CODEGEN_SOFTWARE_H
 
-namespace codegen {
+namespace linker {
 
 class software
 {

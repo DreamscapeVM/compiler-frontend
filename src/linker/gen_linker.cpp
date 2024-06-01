@@ -1,17 +1,16 @@
 #include <sstream>
 #include <fstream>
 
-#include <codegen/linker.h>
-#include <codegen/type/convert_varianttype_to_size.h>
+#include <linker/gen_linker.h>
 
-const std::vector<codegen::variant>* const codegen::linker::get_variant() const { 
+const std::vector<linker::variant>* const linker::gen_linker::get_variant() const { 
     return &var;
 }
-const std::vector<codegen::function>* const codegen::linker::get_function() const { 
+const std::vector<linker::function>* const linker::gen_linker::get_function() const { 
     return &func;
 }
 
-std::vector<uint8_t> codegen::linker::convert_var_to_bin(const codegen::variant& v) const { 
+std::vector<uint8_t> linker::gen_linker::convert_var_to_bin(const linker::variant& v) const { 
     std::vector<uint8_t> output;
     output.push_back(0); // var type define
     output.push_back((uint8_t)v.type);
@@ -34,7 +33,7 @@ std::vector<uint8_t> codegen::linker::convert_var_to_bin(const codegen::variant&
     return output;
 }
 
-std::vector<uint8_t> codegen::linker::convert_func_to_bin(const codegen::function& f) const { 
+std::vector<uint8_t> linker::gen_linker::convert_func_to_bin(const linker::function& f) const { 
     std::vector<uint8_t> output;
     output.push_back(1); // var type define
     output.push_back(f.name.size()); // func name
@@ -67,7 +66,7 @@ std::vector<uint8_t> codegen::linker::convert_func_to_bin(const codegen::functio
     return output;
 }
 
-codegen::variant codegen::linker::convert_bin_to_var(const std::vector<uint8_t>& v, int& index) const {
+linker::variant linker::gen_linker::convert_bin_to_var(const std::vector<uint8_t>& v, int& index) const {
     auto type = v[index++];
     auto name_size = v[index++];
     
@@ -79,14 +78,14 @@ codegen::variant codegen::linker::convert_bin_to_var(const std::vector<uint8_t>&
     std::vector<uint8_t> d(v.begin() + index, v.begin() + (index + s));
     index += s;
 
-    return codegen::variant {
+    return linker::variant {
         .name = n,
-        .type = static_cast<codegen::variant_type>(type),
+        .type = static_cast<linker::variant_type>(type),
         .data = d
     };
 }
 
-codegen::function codegen::linker::convert_bin_to_func(const std::vector<uint8_t>& v, int& index) const { 
+linker::function linker::gen_linker::convert_bin_to_func(const std::vector<uint8_t>& v, int& index) const { 
     auto name_size = v[index++];
     std::string n(v.begin() + index, v.begin() + index + name_size);
     index += name_size;
@@ -94,10 +93,10 @@ codegen::function codegen::linker::convert_bin_to_func(const std::vector<uint8_t
     auto ret_type = v[index++];
     auto arg_size = v[index++];
 
-    std::vector<std::tuple<std::string, codegen::variant_type>> arg;
+    std::vector<std::tuple<std::string, linker::variant_type>> arg;
 
     for (int n = 0; n < arg_size; n++) { 
-        codegen::variant_type type = static_cast<codegen::variant_type>(v[index++]);
+        linker::variant_type type = static_cast<linker::variant_type>(v[index++]);
         auto arg_name_size = v[index++];
         std::string arg_name(v.begin() + index, v.begin() + index + arg_name_size);
         index += arg_name_size;
@@ -110,15 +109,15 @@ codegen::function codegen::linker::convert_bin_to_func(const std::vector<uint8_t
     std::vector<uint8_t> d(v.begin() + index, v.begin() + (index + data_size));
     index += data_size;
 
-    return codegen::function{
-        .ret = static_cast<codegen::variant_type>(ret_type),
+    return linker::function{
+        .ret = static_cast<linker::variant_type>(ret_type),
         .name = n,
         .arg = arg,
         .data = d
     };
 }
 
-std::vector<uint8_t> codegen::linker::create_linker_to_memory() const { 
+std::vector<uint8_t> linker::gen_linker::create_linker_to_memory() const { 
     std::vector<uint8_t> output;
     
     for (const auto& p : var) { 
@@ -134,7 +133,7 @@ std::vector<uint8_t> codegen::linker::create_linker_to_memory() const {
     return output;
 }
 
-void codegen::linker::create_linker_to_file(const std::string& filename) const {
+void linker::gen_linker::create_linker_to_file(const std::string& filename) const {
     auto data = create_linker_to_memory();
     std::ofstream file(filename, std::ios::binary);
     if (!file.is_open()) {
@@ -150,7 +149,7 @@ void codegen::linker::create_linker_to_file(const std::string& filename) const {
     file.close();
 }
 
-void codegen::linker::restore_from_memory(const std::vector<uint8_t>& data) { 
+void linker::gen_linker::restore_from_memory(const std::vector<uint8_t>& data) { 
     // TODO: restore from memory
     int index = 0;
     this->var.clear();
@@ -169,8 +168,8 @@ void codegen::linker::restore_from_memory(const std::vector<uint8_t>& data) {
 }
 
 
-void codegen::linker::add_var(std::string name, 
-                                codegen::variant_type type, 
+void linker::gen_linker::add_var(std::string name, 
+                                linker::variant_type type, 
                                 const void* const pos, 
                                 int size) { 
     std::vector<uint8_t> data(size);
@@ -178,16 +177,16 @@ void codegen::linker::add_var(std::string name,
         data[i] = ((uint8_t*)pos)[i];
     }
     
-    var.push_back(variant { 
+    var.push_back(linker::variant { 
         .data = data,
         .name = name,
         .type = type,
     });
 }
 
-void codegen::linker::add_function(std::string name, 
-                        codegen::variant_type ret, 
-                        std::vector<std::tuple<std::string, codegen::variant_type>> arg,
+void linker::gen_linker::add_function(std::string name, 
+                        linker::variant_type ret, 
+                        std::vector<std::tuple<std::string, linker::variant_type>> arg,
                         std::vector<uint8_t> ops) { 
     func.push_back(function { 
         .name = name,

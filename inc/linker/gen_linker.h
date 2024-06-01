@@ -5,12 +5,13 @@
 #include <vector>
 #include <tuple>
 
-#include <codegen/type/variant.h>
-#include <codegen/type/function.h>
-#include <codegen/type/convert_type_to_varianttype.h>
+#include <linker/type/variant.h>
+#include <linker/type/function.h>
+#include <linker/type/convert_type_to_varianttype.h>
+#include <linker/type/convert_varianttype_to_size.h>
 
-namespace codegen {
-class linker
+namespace linker {
+class gen_linker
 {
 private:
     std::vector<variant> var;
