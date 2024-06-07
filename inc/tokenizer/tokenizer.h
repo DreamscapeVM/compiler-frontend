@@ -4,51 +4,91 @@
 #include <vector>
 #include <tuple>
 #include <cstdint>
+#include <spdlog/spdlog.h>
 
 #include <tokenizer/token.h>
 #include <tokenizer/tokenizer.h>
 
-
 class tokenizer { 
-private:
+public:
     using memory_data = std::vector<uint8_t>;
+    const std::vector<std::string> reserved_word {
+        "let",
+        "mut",
+        "if",
+        "for",
+        "while"
+    };
+
+#define ADD_SPECIAL_CHAR(DATA, CHARACTER) \
+    case DATA: result += CHARACTER; break;
+    
+
+private:
     memory_data data;
     memory_data::const_iterator iter;
 
 public:
-    std::vector<uint8_t> read_from_file(const std::string& filename) const;
+    memory_data read_from_text(const std::string& text) const;
+    memory_data read_from_file(const std::string& filename) const;
 
     void set_data(const std::vector<uint8_t>& data) { 
         this->data = data;
         this->iter = this->data.begin();
     }
 
+    template<typename T, std::size_t S>
+    bool is_in(const T (&data)[S], const T& target) {
+        for (const auto& d : data) { 
+            if (d == target) { 
+                return true;
+            }
+        }
+        return false;
+    }
+
+    std::string get_str();
+
     std::tuple<token, std::string> get_token() { 
         if (iter == data.end()) { 
             return std::make_tuple(token::eof, "");
         }
 
-        std::string result;
-        
-        while (iter == data.end()) { 
-            char cur_data = *iter;
+        for (; iter != data.end(); ++iter) {
             // this is comments. skip until find a new line.
-            if (cur_data == '#') { 
-                for (; iter == data.end(); ++iter) { 
-                    if (cur_data == ' ' || 
-                        cur_data == '\n' ||
-                        cur_data == '\r') {
+            if (*iter == '#') { 
+                std::string result;
+
+                for (; iter != data.end(); ++iter) {
+                    if (*iter == '\n' ||
+                        *iter == '\r') {
                         // finish 
-                        return std::make_tuple(token::comment, result);
+                        break;
                     }
+                    result += *iter;
+                }
+                return std::make_tuple(token::comment, result);
+            }
+            
+            if (*iter == ';') {
+                // next, important word, if data => static,
+                // function => create func
+                // main => entry point
+                auto name = get_str();
+                if (name == "main") { 
+                    // entrypoint main!
+                    
+                }else if (name == "data") { 
+                    // section for data and static
+                }else if (name == "function") { 
+                    // define for function.
+
                 }
             }
-
-            result += cur_data;
         }
 
 
-        return std::make_tuple(token::error, result);
+        return std::make_tuple(token::error, std::string());
     }
 };
 

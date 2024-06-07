@@ -32,6 +32,7 @@ target_link_libraries(main PUBLIC cxxopts::cxxopts)
 
 if (USE_GTEST)
     include(${CMAKE_SOURCE_DIR}/tests/cmakes/linker.cmake)
+    include(${CMAKE_SOURCE_DIR}/tests/cmakes/tokenizer.cmake)
 endif()
 
 add_executable(${PROJ_NAME} src/main.cpp)
