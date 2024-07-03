@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include <vector>
+#define private public
 #include <tokenizer/tokenizer.h>
+#undef private
 
 #define CHECKS(TOKENIZER, VALUE)         \
 {                                       \
@@ -48,52 +50,17 @@ TEST(Tokenizer, check_get_str_token3) {
 }                                                     \
 ");
     t.set_data(p);
-
-CHECKS(t, ";"); CHECKS(t, "main"); CHECKS(t, "("); CHECKS(t, "argv"); CHECKS(t, ":"); CHECKS(t, "["); CHECKS(t, "str"); CHECKS(t, "]"); CHECKS(t, ")");
-CHECKS(t, "{"); CHECKS(t, "print"); CHECKS(t, "("); CHECKS(t, "str"); CHECKS(t, ")"); CHECKS(t, "mut");
-CHECKS(t, "data");
-CHECKS(t, ":");
-CHECKS(t, "int64");
-CHECKS(t, "=");
-CHECKS(t, "0");
-CHECKS(t, "for");
-CHECKS(t, "mut");
-CHECKS(t, "i");
-CHECKS(t, ":");
-CHECKS(t, "int32");
-CHECKS(t, "=");
-CHECKS(t, "0");
-CHECKS(t, ";");
-CHECKS(t, "i");
-CHECKS(t, "<");
-CHECKS(t, "10");
-CHECKS(t, ";");
-CHECKS(t, "i");
-CHECKS(t, "+");
-CHECKS(t, "=");
-CHECKS(t, "1");
-CHECKS(t, "{");
-CHECKS(t, "data");
-CHECKS(t, "=");
-CHECKS(t, "add");
-CHECKS(t, "(");
-CHECKS(t, "[");
-CHECKS(t, "data");
-CHECKS(t, ",");
-CHECKS(t, "i");
-CHECKS(t, ",");
-CHECKS(t, "value");
-CHECKS(t, "]");
-CHECKS(t, ")");
-CHECKS(t, "print");
-CHECKS(t, "(");
-CHECKS(t, "[");
-CHECKS(t, "data");
-CHECKS(t, ",");
-CHECKS(t, "\n");
-CHECKS(t, "]");
-CHECKS(t, ")");
-CHECKS(t, "}");
-CHECKS(t, "}");
+    CHECKS(t, ";"); CHECKS(t, "main"); CHECKS(t, "("); CHECKS(t, "argv"); CHECKS(t, ":");
+    CHECKS(t, "["); CHECKS(t, "str"); CHECKS(t, "]"); CHECKS(t, ")"); CHECKS(t, "{");
+    CHECKS(t, "print"); CHECKS(t, "("); CHECKS(t, "str"); CHECKS(t, ")"); CHECKS(t, "mut");
+    CHECKS(t, "data"); CHECKS(t, ":"); CHECKS(t, "int64"); CHECKS(t, "="); CHECKS(t, "0");
+    CHECKS(t, "for"); CHECKS(t, "mut"); CHECKS(t, "i"); CHECKS(t, ":"); CHECKS(t, "int32");
+    CHECKS(t, "="); CHECKS(t, "0"); CHECKS(t, ";"); CHECKS(t, "i"); CHECKS(t, "<");
+    CHECKS(t, "10"); CHECKS(t, ";"); CHECKS(t, "i"); CHECKS(t, "+"); CHECKS(t, "=");
+    CHECKS(t, "1"); CHECKS(t, "{"); CHECKS(t, "data"); CHECKS(t, "="); CHECKS(t, "add");
+    CHECKS(t, "("); CHECKS(t, "["); CHECKS(t, "data"); CHECKS(t, ","); CHECKS(t, "i");
+    CHECKS(t, ","); CHECKS(t, "value"); CHECKS(t, "]"); CHECKS(t, ")"); CHECKS(t, "print");
+    CHECKS(t, "("); CHECKS(t, "["); CHECKS(t, "data"); CHECKS(t, ","); CHECKS(t, "\'\n\'");
+    CHECKS(t, "]"); CHECKS(t, ")"); CHECKS(t, "}"); CHECKS(t, "}");
 }
 

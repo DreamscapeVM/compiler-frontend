@@ -27,6 +27,7 @@ public:
 private:
     memory_data data;
     memory_data::const_iterator iter;
+    std::string get_str();
 
 public:
     memory_data read_from_text(const std::string& text) const;
@@ -47,45 +48,13 @@ public:
         return false;
     }
 
-    std::string get_str();
-
     std::tuple<token, std::string> get_token() { 
         if (iter == data.end()) { 
             return std::make_tuple(token::eof, "");
         }
 
-        for (; iter != data.end(); ++iter) {
-            // this is comments. skip until find a new line.
-            if (*iter == '#') { 
-                std::string result;
+        auto text = this->get_str();
 
-                for (; iter != data.end(); ++iter) {
-                    if (*iter == '\n' ||
-                        *iter == '\r') {
-                        // finish 
-                        break;
-                    }
-                    result += *iter;
-                }
-                return std::make_tuple(token::comment, result);
-            }
-            
-            if (*iter == ';') {
-                // next, important word, if data => static,
-                // function => create func
-                // main => entry point
-                auto name = get_str();
-                if (name == "main") { 
-                    // entrypoint main!
-                    
-                }else if (name == "data") { 
-                    // section for data and static
-                }else if (name == "function") { 
-                    // define for function.
-
-                }
-            }
-        }
 
 
         return std::make_tuple(token::error, std::string());

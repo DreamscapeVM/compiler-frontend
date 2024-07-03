@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
     // // }
     
     // auto arg = args::parse_argument(argc, argv);
-    
+
 
     tokenizer t;
     auto p = t.read_from_text("                       \
@@ -22,12 +22,18 @@ int main(int argc, char** argv) {
     }                                                 \
 }                                                     \
 ");
-    t.set_data(p);
-
-    while (true) { 
-        auto data2 = t.get_str();
-        std::cout << "CHECKS(t, \"" << data2 << "\");\n";
-    }
     
+    t.set_data(p);
+    for (int i = 1;; i++) {
+        auto data2 = t.get_str();
+        std::cout << "CHECKS(t, \"" << data2 << "\"); ";
+        if (data2 == "") {
+            return 0;
+        }
+        if (i % 5 == 0) {
+            std::cout << "\n";
+        }
+    }
+
     return 0;
 }

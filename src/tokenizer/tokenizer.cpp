@@ -31,7 +31,7 @@ tokenizer::memory_data tokenizer::read_from_file(const std::string& filename) co
 }
 
 
-  std::string tokenizer::get_str() { 
+  std::string tokenizer::get_str() {
         // [, ], (, ), ;, :, \n, \r, eof, op, , \', \", ' '
         constexpr char reserved_split_data[] = "{}[]():;,+-*/%=";
         constexpr char timing_of_ensure_split[4] = "\n\r ";
@@ -49,6 +49,24 @@ tokenizer::memory_data tokenizer::read_from_file(const std::string& filename) co
 
         if (iter == data.end()) {
             return "";
+        }
+
+        // filtering comment
+        for (; iter != data.end(); ++iter) {
+            // this is comments. skip until find a new line.
+            if (*iter == '#') {
+                std::string result;
+
+                for (; iter != data.end(); ++iter) {
+                    if (*iter == '\n' ||
+                        *iter == '\r') {
+                        // finish
+                        break;
+                        }
+                    result += *iter;
+                }
+                return std::make_tuple(token::comment, result);
+            }
         }
 
         if (is_in(reserved_split_data, (char)*iter)) { 
